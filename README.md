@@ -1,6 +1,8 @@
 # CN_project_1
 ## Open Terminal type
-And start the server :
+![#f03c15](if you are a windows user use python instead of python3) #f03c15`
+
+And start the server use :
 ```py
 python3 server.py 
 ```
