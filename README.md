@@ -1,7 +1,7 @@
 # CN_project_1
 ## Open Terminal type
 ![#f03c15](if you are a windows user use python instead of python3) #f03c15`
-
+<span style="color: green"> Some green text </span>
 And start the server use :
 ```py
 python3 server.py 
