@@ -13,5 +13,20 @@ ftpclient 5108
 ```
 We can get the file from server or you can upload a file to server
 
+## GET FUNCTION
+If you want to get the file from server use command :
+```py
+get u.pptx
+```
+client will recieve the ppt with name newu.pptx.
 
-Server will start at port 5106
+## UPLOAD FUNCTION
+If you want to UPLOAD the file from client to server use command :
+```py
+upload u.pptx
+```
+client will send the ppt with name newu.pptx to server.
+
+
+
+
