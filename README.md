@@ -3,7 +3,8 @@
 ```diff
 - If you are a windows user use python instead of python3
 ```
-And start the server use :
+## Start Server
+To start the server use command:
 ```py
 python3 server.py 
 ```
