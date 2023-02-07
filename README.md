@@ -7,7 +7,7 @@ And start the server use :
 ```py
 python3 server.py 
 ```
-Server will started and server will start listening on port 5108
+Server will started listening on port 5108
 
 ## Start the client and connect to the server :
 Enter the command and Port number to connect:
