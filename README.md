@@ -1,7 +1,7 @@
 # CN_project_1
 ## Open Terminal type
 ```diff
-- (if you are a windows user use python instead of python3)
+- If you are a windows user use python instead of python3
 ```
 And start the server use :
 ```py
