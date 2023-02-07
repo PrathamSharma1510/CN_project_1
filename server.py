@@ -1,4 +1,5 @@
 import socket
+import os
 def start_server(PORT, BUFFER_SIZE):
     print("Server is starting..")
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -13,13 +14,16 @@ def start_server(PORT, BUFFER_SIZE):
         cmd = command.split()
         
         if cmd[0] == 'get':
+            filesize = os.path.getsize(cmd[1])
+            conn.sendall(str(filesize).encode())
             file = open(cmd[1], 'rb')
             chunk =file.read (1024)
             while(chunk):
-                conn.send(chunk)
+                conn.sendall(chunk)
                 chunk = file.read(1024)
             file.close()
             print("File Sent!")
+            # break
         elif cmd[0] == 'upload':
             file = open('new' +cmd[1],'wb')
             chunk = conn.recv(1024)
@@ -28,14 +32,15 @@ def start_server(PORT, BUFFER_SIZE):
                 chunk = conn.recv(1024)
             file.close()
             print('File Received!')
+            # break
         else :
             print('Invalid Command')
             conn.send("Invalid Command please try again!".encode("utf-8"))
             conn.closed()
             break 
         
-        conn.close()
+        # conn.close()
 
 if __name__ == "__main__":
-    PORT = 5108
+    PORT = 5107
     start_server(PORT, 1024)
