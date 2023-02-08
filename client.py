@@ -4,8 +4,14 @@ import socket
 def main(port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.connect(('localhost', port))
+    flag=False
 
     while True:
+        if(flag):
+            server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            server_socket.connect(('localhost', port))
+            flag=False
+
         command = input("Enter command (get/upload filename): ")
         command_parts = command.split()
         if len(command_parts) != 2:
@@ -24,6 +30,7 @@ def main(port):
                 chunk = server_socket.recv(1024)
             file.close()
             print('File Received')
+            flag=True
 
         elif action == "upload":
             server_socket.send(command.encode('utf-8'))
@@ -36,10 +43,16 @@ def main(port):
             file.close()
 
             print("File Sent!")
+            flag=True
 
+        elif action=="exit":
+            server_socket.close()
+            break
+        
         else:
             print("Invalid command.")
             server_socket.close()
+            break
 
         server_socket.close()
         
