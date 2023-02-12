@@ -11,7 +11,7 @@ python3 server.py
 Server will started listening on port 5108
 
 ## Start the client and connect to the server :
-Enter the command and Port number to connect:
+Enter the command and port number to connect:
 ```py
 ftpclient 5108
 ```

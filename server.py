@@ -1,31 +1,31 @@
 import socket
-def start_server(PORT, BUFFER_SIZE):
+def start_server(port, BUFFER_SIZE):
     print("Server is starting..")
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(("localhost", PORT)) 
+    server.bind(("localhost", port)) 
     server.listen()
-    print("Server started. Listening on port", PORT)
+    print("Server started. Listening on port", port)
     while True:
-        conn, address = server.accept()
-        print("[+] New client connected: ", address)
+        conn, add = server.accept()
+        print("[+] New client connected: ", add)
         data =conn.recv(1024)
         command =data.decode("utf-8")
-        cmd = command.split()
+        data_split = command.split()
         
-        if cmd[0] == 'get':
-            file = open(cmd[1], 'rb')
-            chunk =file.read (1024)
-            while(chunk):
-                conn.send(chunk)
-                chunk = file.read(1024)
+        if data_split[0] == 'get':
+            file = open(data_split[1], 'rb')
+            file_chunks =file.read (1024)
+            while(file_chunks):
+                conn.send(file_chunks)
+                file_chunks = file.read(1024)
             file.close()
             print("File Sent!")
-        elif cmd[0] == 'upload':
-            file = open('new' +cmd[1],'wb')
-            chunk = conn.recv(1024)
-            while chunk:
-                file.write(chunk)
-                chunk = conn.recv(1024)
+        elif data_split[0] == 'upload':
+            file = open('new' +data_split[1],'wb')
+            file_chunks = conn.recv(1024)
+            while file_chunks:
+                file.write(file_chunks)
+                file_chunks = conn.recv(1024)
             file.close()
             print('File Received!')
         else :
@@ -37,5 +37,5 @@ def start_server(PORT, BUFFER_SIZE):
         conn.close()
 
 if __name__ == "__main__":
-    PORT = 5108
-    start_server(PORT, 1024)
+    port = 5108
+    start_server(port, 1024)

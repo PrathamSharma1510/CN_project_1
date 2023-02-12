@@ -24,10 +24,10 @@ def main(port):
         if action == "get":
             server_socket.send(command.encode('utf-8'))
             file = open(f"new{filename}", 'wb')
-            chunk = server_socket.recv(1024)
-            while chunk:
-                file.write(chunk)
-                chunk = server_socket.recv(1024)
+            file_chunks = server_socket.recv(1024)
+            while file_chunks:
+                file.write(file_chunks)
+                file_chunks = server_socket.recv(1024)
             file.close()
             print('File Received')
             flag=True
@@ -35,17 +35,17 @@ def main(port):
         elif action == "upload":
             server_socket.send(command.encode('utf-8'))
             file = open(filename, 'rb')
-            chunk = file.read(1024)
-            server_socket.send(chunk)
-            while(chunk):
-                chunk = file.read(1024)
-                server_socket.send(chunk)
+            file_chunks = file.read(1024)
+            server_socket.send(file_chunks)
+            while(file_chunks):
+                file_chunks = file.read(1024)
+                server_socket.send(file_chunks)
             file.close()
 
             print("File Sent!")
             flag=True
 
-        elif action=="exit":
+        elif command=="exit":
             server_socket.close()
             break
         
@@ -59,7 +59,7 @@ def main(port):
 
 
 if __name__ == "__main__":
-    start=input("Enter the command and Port number :")
+    start=input("Enter the command and port number :")
     start=start.split();
     if(start[0]=='ftpclient'):
         port = int(start[1])
