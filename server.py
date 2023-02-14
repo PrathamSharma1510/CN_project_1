@@ -21,20 +21,8 @@ def start_server(port, BUFFER_SIZE):
             command =data.decode("utf-8")
             # splited into two parts command + filename
             data_split = command.split()
-            # get function
-            if data_split[0] == 'get':
-                # file is openend
-                file = open(data_split[1], 'rb')
-                file_chunks =file.read (1024)
-                # chunks are send in the set of 1024
-                while(file_chunks):
-                    conn.send(file_chunks)
-                    file_chunks = file.read(1024)
-                file.close()
-                print("File Sent!")
-                # file is closed and thats why file is not corrupt 
             # upload function
-            elif data_split[0] == 'upload':
+            if data_split[0] == 'upload':
                 # open the file 
                 file = open('new' +data_split[1],'wb')
                 file_chunks = conn.recv(1024)
@@ -45,6 +33,18 @@ def start_server(port, BUFFER_SIZE):
                 file.close()
                 # file is closed and thats why file is not corrupt 
                 print('File Received!')
+            # get function
+            elif data_split[0] == 'get':
+                # file is openend
+                file = open(data_split[1], 'rb')
+                file_chunks =file.read (1024)
+                # chunks are send in the set of 1024
+                while(file_chunks):
+                    conn.send(file_chunks)
+                    file_chunks = file.read(1024)
+                file.close()
+                print("File Sent!")
+                # file is closed and thats why file is not corrupt 
 
                 # invalid function
             elif data_split[0]=='exit':
@@ -58,6 +58,7 @@ def start_server(port, BUFFER_SIZE):
                 # connection is closed 
             conn.close()
         except:
+            # handel any error
             print("Something went wrong ")
             conn.close()
         else:
