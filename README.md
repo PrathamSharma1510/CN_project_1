@@ -20,14 +20,14 @@ We can get the file from server or you can upload a file to server
 ## GET FUNCTION
 If you want to get the file from server use command :
 ```py
-get u.pptx
+get downloadTestFile.pptx
 ```
 client will recieve the ppt with name newu.pptx.
 
 ## UPLOAD FUNCTION
 If you want to UPLOAD the file from client to server use command :
 ```py
-upload u.pptx
+upload uploadTestFile.pptx
 ```
 client will send the ppt with name newu.pptx to server.
 
