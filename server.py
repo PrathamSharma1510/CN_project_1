@@ -19,6 +19,7 @@ def start_server(port, BUFFER_SIZE):
             data =conn.recv(1024)
             # data fetched
             command =data.decode("utf-8")
+            print("Recieved command "+ command)
             # splited into two parts command + filename
             data_split = command.split()
             # upload function
@@ -32,7 +33,7 @@ def start_server(port, BUFFER_SIZE):
                     file_chunks = conn.recv(1024)
                 file.close()
                 # file is closed and thats why file is not corrupt 
-                print('File Received!')
+                print('File Received! and new name of file is: new' +data_split[1])
             # get function
             elif data_split[0] == 'get':
                 # file is openend

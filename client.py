@@ -35,7 +35,7 @@ def main(port):
                     file_chunks = server_socket.recv(1024)
                 file.close()
                 # file is closed and thats why file is not corrupt 
-                print('File Received')
+                print('File Received! and new name of file is: new' +command_parts[1])
                 flag = True
         # upload function
         elif command_parts[0] == "upload":
@@ -60,7 +60,7 @@ def main(port):
         # exit  for the connection to disconnect
         elif command == "exit":
             server_socket.send(command.encode('utf-8'))
-            print("The connection is exited")
+            print("The connection is Ended")
             server_socket.close()
             break
         else:
