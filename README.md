@@ -32,5 +32,13 @@ upload u.pptx
 client will send the ppt with name newu.pptx to server.
 
 
+## EXIT
+IF you want to exit the server and client then use:
+```py
+exit
+```
+
+
+
 
 
